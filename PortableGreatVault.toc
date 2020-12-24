@@ -3,9 +3,9 @@
 ## Notes: Allows you to view your Great Vault from anywhere.
 ## Author: ToppleTheNun
 ## Version: @project-version@
-## SavedVariables: GreatVaultAnywhereDB
+## SavedVariables: PortableGreatVaultDB
 ## OptionalDeps: Ace3, LibDataBroker-1.1, LibDBIcon-1.0
 ## X-Embeds: Ace3, LibDataBroker-1.1, LibDBIcon-1.0
 
 libs/libs.xml
-dist/files.xml
+PortableGreatVault.lua
