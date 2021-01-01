@@ -1,13 +1,19 @@
-PortableGreatVault = LibStub("AceAddon-3.0"):NewAddon("PortableGreatVault", "AceConsole-3.0")
+-- Setup function container
+PortableGreatVault.F = {}
+
+-- Get localization
 local L = LibStub("AceLocale-3.0"):GetLocale("PortableGreatVault", true)
 
-local defaults = {
-    profile = {
-        minimap = {
-            hide = false
-        }
-    }
-}
+local function filterActivitiesByType(activities, type)
+    local filteredActivities = {}
+    for _, activityInfo in ipairs(activities) do
+        if activityInfo.type == type then
+            table.insert(filteredActivities, activityInfo)
+        end
+    end
+    return filteredActivities
+end
+
 
 local function convertCompletedActivityToItemLevel(activity)
     local itemLink = C_WeeklyRewards.GetExampleRewardItemHyperlinks(activity.id)
@@ -19,6 +25,25 @@ local function convertCompletedActivityToItemLevel(activity)
         return ""
     end
     return tostring(itemLevel)
+end
+
+local function clampMythicPlusLevel(level)
+    if level < 5 then
+        return 2
+    end
+    if level < 7 then
+        return 5
+    end
+    if level < 10 then
+        return 7
+    end
+    if level < 15 then
+        return 10
+    end
+    if level < 20 then
+        return 15
+    end
+    return 20
 end
 
 local function getDisplayForSuccessfulRaid(activity)
@@ -42,7 +67,9 @@ end
 local function getDisplayForSuccessfulMythicPlus(activity)
     return string.format(
             L["mythicPlusSuccess"],
+            L["mythicPlusSuccessDifficultyColor"][clampMythicPlusLevel(activity.level)],
             activity.level,
+            L["mythicPlusSuccessDifficultyColor"][clampMythicPlusLevel(activity.level)],
             convertCompletedActivityToItemLevel(activity)
     )
 end
@@ -122,25 +149,13 @@ local function getTooltipForPvP(activities)
     )
 end
 
-local function addTooltipText(tooltip)
+function PortableGreatVault:addTooltipText(tooltip)
     -- get all activities from WoW
     local activities = C_WeeklyRewards.GetActivities()
 
-    local raidActivities = {}
-    local mythicPlusActivities = {}
-    local pvpActivities = {}
-
-    for _, activityInfo in ipairs(activities) do
-        if activityInfo.type == Enum.WeeklyRewardChestThresholdType.Raid then
-            table.insert(raidActivities, activityInfo)
-        end
-        if activityInfo.type == Enum.WeeklyRewardChestThresholdType.MythicPlus then
-            table.insert(mythicPlusActivities, activityInfo)
-        end
-        if activityInfo.type == Enum.WeeklyRewardChestThresholdType.RankedPvP then
-            table.insert(pvpActivities, activityInfo)
-        end
-    end
+    local raidActivities = filterActivitiesByType(activities, Enum.WeeklyRewardChestThresholdType.Raid)
+    local mythicPlusActivities = filterActivitiesByType(activities, Enum.WeeklyRewardChestThresholdType.MythicPlus)
+    local pvpActivities = filterActivitiesByType(activities, Enum.WeeklyRewardChestThresholdType.RankedPvP)
 
     tooltip:SetText(L["addonName"])
     tooltip:AddLine(L["clickToOpen"], 1, 1, 1)
@@ -152,27 +167,4 @@ local function addTooltipText(tooltip)
     tooltip:AddDoubleLine(L["pvpHeader"], getTooltipForPvP(pvpActivities))
 
     tooltip:Show()
-end
-
-function PortableGreatVault:ConstructMinimapIcon()
-    self.minimap = {}
-    self.minimap.icon_data = LibStub("LibDataBroker-1.1"):NewDataObject("PortableGreatVault", {
-        type = "data source",
-        text = "PortableGreatVault",
-        icon = "Interface\\Icons\\INV_Misc_Note_03",
-        OnClick = function(self, button)
-            WeeklyRewardsFrame:Show()
-        end,
-        OnTooltipShow = function(tooltip)
-            addTooltipText(tooltip)
-        end
-    })
-    self.minimap.icon = LibStub("LibDBIcon-1.0")
-    self.minimap.icon:Register("PortableGreatVault", self.minimap.icon_data, self.db.profile.minimap)
-end
-
-function PortableGreatVault:OnInitialize()
-    self.db = LibStub("AceDB-3.0"):New("PortableGreatVaultDB", defaults, true)
-    self:ConstructMinimapIcon()
-    LoadAddOn("Blizzard_WeeklyRewards")
 end

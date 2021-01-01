@@ -21,7 +21,15 @@ if L then
     L["raidRewards"] = "%s %s %s"
     L["mythicPlusHeader"] = "M+"
     L["mythicPlusRewards"] = "%s %s %s"
-    L["mythicPlusSuccess"] = "+%d (%d)"
+    L["mythicPlusSuccess"] = "%s+%d|r (%s%d|r)"
+    L["mythicPlusSuccessDifficultyColor"] = {
+        [2] = "|cFF9D9D9D",
+        [5] = "|cFFFFFFFF",
+        [7] = "|cFF1EFF00",
+        [10] = "|cFF0070DD",
+        [15] = "|cFFA335EE",
+        [20] = "|cFFFF8000"
+    }
     L["mythicPlusIncomplete"] = "%d/%d"
     L["pvpHeader"] = "PvP"
     L["pvpRewards"] = "%s %s %s"

@@ -2,12 +2,14 @@
 ## Title: Portable Great Vault
 ## Notes: Allows you to view your Great Vault from anywhere.
 ## Author: ToppleTheNun
-## Version: 1
+## Version: @project-version@
 ## SavedVariables: PortableGreatVaultDB
 ## OptionalDeps: Ace3, LibDataBroker-1.1, LibDBIcon-1.0
 ## X-Embeds: Ace3, LibDataBroker-1.1, LibDBIcon-1.0
 ## X-Curse-Project-ID: 428615
 
-libs/libs.xml
-locales/enUS.lua
-PortableGreatVault.lua
+libs\libs.xml
+locales\enUS.lua
+init.lua
+functions.lua
+core.lua
