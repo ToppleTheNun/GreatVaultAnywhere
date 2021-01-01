@@ -397,5 +397,3 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/lua,visualstudiocode,jetbrains+all,emacs,vim,macos,windows,linux,node
-libs/**/*
-!libs/libs.xml

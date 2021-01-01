@@ -1,0 +1,6 @@
+[submodule "libs/Ace3"]
+	path = libs/Ace3
+	url = https://git.tukui.org/Azilroka/Ace3.git
+[submodule "libs/LibDataBroker-1.1"]
+	path = libs/LibDataBroker-1.1
+	url = https://github.com/tekkub/libdatabroker-1-1.git
