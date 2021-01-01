@@ -9,12 +9,6 @@ if L then
         [DifficultyUtil.ID.PrimaryRaidHeroic] = "|cFF0070DD",
         [DifficultyUtil.ID.PrimaryRaidMythic] = "|cFFA335EE"
     }
-    L["raidSuccessDifficultyName"] = {
-        [DifficultyUtil.ID.PrimaryRaidLFR] = "LFR",
-        [DifficultyUtil.ID.PrimaryRaidNormal] = "N",
-        [DifficultyUtil.ID.PrimaryRaidHeroic] = "H",
-        [DifficultyUtil.ID.PrimaryRaidMythic] = "M"
-    }
     L["raidSuccess"] = "%s%s|r (%s%d|r)"
     L["raidIncomplete"] = "%d/%d"
     L["raidHeader"] = "Raid"
@@ -33,6 +27,14 @@ if L then
     L["mythicPlusIncomplete"] = "%d/%d"
     L["pvpHeader"] = "PvP"
     L["pvpRewards"] = "%s %s %s"
-    L["pvpSuccess"] = "%d (%d)"
+    L["pvpSuccess"] = "%s%d|r (%s%d|r)"
+    L["pvpSuccessDifficultyColor"] = {
+        [0] = "|cFF9D9D9D",
+        [1] = "|cFFFFFFFF",
+        [2] = "|cFF1EFF00",
+        [3] = "|cFF0070DD",
+        [4] = "|cFFA335EE",
+        [5] = "|cFFFF8000"
+    }
     L["pvpIncomplete"] = "%d/%d"
 end

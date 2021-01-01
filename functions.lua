@@ -50,7 +50,7 @@ local function getDisplayForSuccessfulRaid(activity)
     return string.format(
             L["raidSuccess"],
             L["raidSuccessDifficultyColor"][activity.level],
-            L["raidSuccessDifficultyName"][activity.level],
+            DifficultyUtil.GetDifficultyName(activity.level),
             L["raidSuccessDifficultyColor"][activity.level],
             convertCompletedActivityToItemLevel(activity)
     )
@@ -84,8 +84,10 @@ end
 
 local function getDisplayForSuccessfulPvP(activity)
     return string.format(
-            L["pvpSuccess"],
-            activity.level,
+            aura_env.L["pvpSuccess"],
+            aura_env.L["pvpSuccessDifficultyColor"][activity.level],
+            PVPUtil.GetTierName(activity.level),
+            aura_env.L["pvpSuccessDifficultyColor"][activity.level],
             convertCompletedActivityToItemLevel(activity)
     )
 end
