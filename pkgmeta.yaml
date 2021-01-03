@@ -10,5 +10,11 @@ externals:
   libs/LibDBIcon-1.0: https://repos.wowace.com/wow/libdbicon-1-0/trunk/LibDBIcon-1.0
   libs/LibStub: https://repos.wowace.com/wow/libstub/trunk
 
-enable-nolib-creation: no
+enable-nolib-creation: yes
 license-output: LICENSE
+ignore:
+  - .github
+  - .idea
+  - .git
+  - "*.bat"
+  - "*.sh"
