@@ -84,10 +84,10 @@ end
 
 local function getDisplayForSuccessfulPvP(activity)
     return string.format(
-            aura_env.L["pvpSuccess"],
-            aura_env.L["pvpSuccessDifficultyColor"][activity.level],
+            L["pvpSuccess"],
+            L["pvpSuccessDifficultyColor"][activity.level],
             PVPUtil.GetTierName(activity.level),
-            aura_env.L["pvpSuccessDifficultyColor"][activity.level],
+            L["pvpSuccessDifficultyColor"][activity.level],
             convertCompletedActivityToItemLevel(activity)
     )
 end
