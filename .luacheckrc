@@ -90,6 +90,9 @@ globals = {
 	"C_WeeklyRewards",
 	"DifficultyUtil",
 	"Enum",
+	"GetDetailedItemLevelInfo",
+	"LibStub",
+	"LoadAddOn",
 	"PVPUtil",
 	"WeeklyRewardsFrame",
 }
