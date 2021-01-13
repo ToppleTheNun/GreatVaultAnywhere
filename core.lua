@@ -13,7 +13,11 @@ function PortableGreatVault:ConstructMinimapIcon()
         text = "PortableGreatVault",
         icon = "Interface\\Icons\\INV_Misc_Note_03",
         OnClick = function(self, button)
-            WeeklyRewardsFrame:Show()
+            if WeeklyRewardsFrame:IsShown() then
+                WeeklyRewardsFrame:Hide()
+            else
+                WeeklyRewardsFrame:Show()
+            end
         end,
         OnTooltipShow = function(tooltip)
             self:addTooltipText(tooltip)
