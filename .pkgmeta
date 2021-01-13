@@ -9,13 +9,13 @@ externals:
     url: https://repos.wowace.com/wow/ace3/trunk/AceDB-3.0
   libs/Ace3/AceLocale-3.0:
     url: https://repos.wowace.com/wow/ace3/trunk/AceLocale-3.0
-  libs/CallbackHandler-1.0:
+  libs/Ace3/CallbackHandler-1.0:
     url: https://repos.wowace.com/wow/ace3/trunk/CallbackHandler-1.0
   libs/LibDataBroker-1.1:
     url: https://repos.wowace.com/wow/libdatabroker-1-1
   libs/LibDBIcon-1.0:
     url: https://repos.wowace.com/wow/libdbicon-1-0/trunk/LibDBIcon-1.0
-  libs/LibStub:
+  libs/Ace3/LibStub:
     url: https://repos.wowace.com/wow/libstub/trunk
 
 enable-nolib-creation: yes
