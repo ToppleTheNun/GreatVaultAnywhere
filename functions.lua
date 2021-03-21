@@ -4,16 +4,9 @@ PortableGreatVault.F = {}
 -- Get localization
 local L = LibStub("AceLocale-3.0"):GetLocale("PortableGreatVault", true)
 
-local function filterActivitiesByType(activities, type)
-    local filteredActivities = {}
-    for _, activityInfo in ipairs(activities) do
-        if activityInfo.type == type then
-            table.insert(filteredActivities, activityInfo)
-        end
-    end
-    return filteredActivities
+local function sortByIndex(a, b)
+    return a.index < b.index
 end
-
 
 local function convertCompletedActivityToItemLevel(activity)
     local itemLink = C_WeeklyRewards.GetExampleRewardItemHyperlinks(activity.id)
@@ -153,11 +146,13 @@ end
 
 function PortableGreatVault:addTooltipText(tooltip)
     -- get all activities from WoW
-    local activities = C_WeeklyRewards.GetActivities()
+    local raidActivities = C_WeeklyRewards.GetActivities(Enum.WeeklyRewardChestThresholdType.Raid)
+    local mythicPlusActivities = C_WeeklyRewards.GetActivities(Enum.WeeklyRewardChestThresholdType.MythicPlus)
+    local pvpActivities = C_WeeklyRewards.GetActivities(Enum.WeeklyRewardChestThresholdType.RankedPvP)
 
-    local raidActivities = filterActivitiesByType(activities, Enum.WeeklyRewardChestThresholdType.Raid)
-    local mythicPlusActivities = filterActivitiesByType(activities, Enum.WeeklyRewardChestThresholdType.MythicPlus)
-    local pvpActivities = filterActivitiesByType(activities, Enum.WeeklyRewardChestThresholdType.RankedPvP)
+    table.sort(raidActivities, sortByIndex)
+    table.sort(mythicPlusActivities, sortByIndex)
+    table.sort(pvpActivities, sortByIndex)
 
     tooltip:SetText(L["addonName"])
     tooltip:AddLine(L["clickToOpen"], 1, 1, 1)
