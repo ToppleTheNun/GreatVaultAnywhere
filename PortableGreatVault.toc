@@ -1,4 +1,4 @@
-## Interface: 90002
+## Interface: 90005
 ## Title: Portable Great Vault
 ## Notes: Allows you to view your Great Vault from anywhere.
 ## Author: ToppleTheNun
